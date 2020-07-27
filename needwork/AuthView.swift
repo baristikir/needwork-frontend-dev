@@ -87,11 +87,79 @@ struct SignInView: View {
     }
 }
 
+//View for SignUp - for new users
 struct SignUpView: View{
+    
+    //private members
+    @State var email: String = ""
+    @State var password: String = ""
+    @State var error : String = ""
+    
+    //Method for Sign Up handling - connection to Backend
+    func signUp() {
+        
+    }
+     
+    //Main View of SignUpView
     var body: some View{
         VStack{
-            Text("Sign Up View")
+            //Title
+            Text("Create Account")
+                .font(.system(size: 32, weight: .heavy))
+            
+            //Subtitle
+            Text("Sign up to get started")
+                .font(.system(size: 16, weight: .medium))
+                .foregroundColor(Color(UIColor.gray))
+            
+            //Vertical Stack for TextField's - for username and password
+            VStack(spacing: 16) {
+                
+                //Input Field for email adress of the client
+                TextField("Enter your Email adress..", text: $email)
+                    .font(.system(size: 14))
+                    .padding(12)
+                    .background(RoundedRectangle(cornerRadius: 5)
+                        .strokeBorder(Color("bg1"), lineWidth: 1))
+                
+                //Input Field for password of the client
+                SecureField("Enter your Password..", text: $password)
+                    .font(.system(size: 14))
+                    .padding(12)
+                    .background(RoundedRectangle(cornerRadius: 5)
+                        .strokeBorder(Color("bg1"), lineWidth: 1))
+            }
+            .padding(.vertical, 64)
+            
+            //Button for SignUp
+            Button(action: signUp)
+            {
+                //Displayed Button text with styling
+                Text("Create Account")
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .frame(height: 50)
+                    .foregroundColor(Color(UIColor.white))
+                    .font(.system(size:14, weight: .bold))
+                    .background(LinearGradient(gradient: Gradient(colors: [
+                        .blue , .blue ]), startPoint: .leading, endPoint: .trailing))
+                    .cornerRadius(5)
+            }
+            
+            //Error handling
+            if(error != "")
+            {
+                //Error Text Message
+                Text(error)
+                    .font(.system(size: 14, weight: .semibold))
+                    .foregroundColor(.red)
+                    .padding()
+            }
+            
+            //Layout Sizing
+            Spacer()
         }
+        //Horizontal styling - elements margin to edges
+        .padding(.horizontal, 32)
     }
 }
 
@@ -105,6 +173,6 @@ struct AuthView: View {
 
 struct AuthView_Previews: PreviewProvider {
     static var previews: some View {
-        SignInView()
+        AuthView()
     }
 }
