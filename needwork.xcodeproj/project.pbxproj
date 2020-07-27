@@ -15,6 +15,7 @@
 		3E7E552A24CCA4A7002DEDBC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E7E552824CCA4A7002DEDBC /* LaunchScreen.storyboard */; };
 		3E7E553524CCA4A7002DEDBC /* needworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E553424CCA4A7002DEDBC /* needworkTests.swift */; };
 		3E7E554024CCA4A7002DEDBC /* needworkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E553F24CCA4A7002DEDBC /* needworkUITests.swift */; };
+		3EDB6AC224CEF880009968A4 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDB6AC124CEF880009968A4 /* AuthView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		3E7E553B24CCA4A7002DEDBC /* needworkUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = needworkUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7E553F24CCA4A7002DEDBC /* needworkUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = needworkUITests.swift; sourceTree = "<group>"; };
 		3E7E554124CCA4A7002DEDBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3EDB6AC124CEF880009968A4 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				3E7E552824CCA4A7002DEDBC /* LaunchScreen.storyboard */,
 				3E7E552B24CCA4A7002DEDBC /* Info.plist */,
 				3E7E552524CCA4A7002DEDBC /* Preview Content */,
+				3EDB6AC124CEF880009968A4 /* AuthView.swift */,
 			);
 			path = needwork;
 			sourceTree = "<group>";
@@ -269,6 +272,7 @@
 			files = (
 				3E7E551E24CCA4A5002DEDBC /* AppDelegate.swift in Sources */,
 				3E7E552024CCA4A5002DEDBC /* SceneDelegate.swift in Sources */,
+				3EDB6AC224CEF880009968A4 /* AuthView.swift in Sources */,
 				3E7E552224CCA4A5002DEDBC /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
