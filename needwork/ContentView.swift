@@ -9,10 +9,17 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var currentUser: CurrentUserAuth
+    
     var body: some View {
-        NavigationView{
-            AuthView()
-        }
+
+            if !currentUser.isLoggedin {
+                return AnyView(AuthView())
+            } else {
+                return AnyView(HomeView())
+            }
+
     }
 }
 

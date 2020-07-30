@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3E1C3A1F24D214CD00C5D60E /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1C3A1E24D214CD00C5D60E /* HomeController.swift */; };
+		3E1C3A2124D21D7000C5D60E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1C3A2024D21D7000C5D60E /* HomeView.swift */; };
 		3E7E551E24CCA4A5002DEDBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E551D24CCA4A5002DEDBC /* AppDelegate.swift */; };
 		3E7E552024CCA4A5002DEDBC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E551F24CCA4A5002DEDBC /* SceneDelegate.swift */; };
 		3E7E552224CCA4A5002DEDBC /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E552124CCA4A5002DEDBC /* ContentView.swift */; };
@@ -36,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3E1C3A1E24D214CD00C5D60E /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		3E1C3A2024D21D7000C5D60E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3E7E551A24CCA4A5002DEDBC /* needwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = needwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7E551D24CCA4A5002DEDBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3E7E551F24CCA4A5002DEDBC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +113,8 @@
 				3E7E552B24CCA4A7002DEDBC /* Info.plist */,
 				3E7E552524CCA4A7002DEDBC /* Preview Content */,
 				3EDB6AC124CEF880009968A4 /* AuthView.swift */,
+				3E1C3A1E24D214CD00C5D60E /* HomeController.swift */,
+				3E1C3A2024D21D7000C5D60E /* HomeView.swift */,
 			);
 			path = needwork;
 			sourceTree = "<group>";
@@ -273,7 +279,9 @@
 				3E7E551E24CCA4A5002DEDBC /* AppDelegate.swift in Sources */,
 				3E7E552024CCA4A5002DEDBC /* SceneDelegate.swift in Sources */,
 				3EDB6AC224CEF880009968A4 /* AuthView.swift in Sources */,
+				3E1C3A2124D21D7000C5D60E /* HomeView.swift in Sources */,
 				3E7E552224CCA4A5002DEDBC /* ContentView.swift in Sources */,
+				3E1C3A1F24D214CD00C5D60E /* HomeController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
