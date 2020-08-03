@@ -1,19 +1,20 @@
 //
-//  HomeController.swift
+//  HomeViewController.swift
 //  needwork
 //
-//  Created by Baris Tikir on 29.07.20.
+//  Created by Baris Tikir on 30.07.20.
 //  Copyright © 2020 Baris Tikir. All rights reserved.
 //
 
 import UIKit
 
-class HomeController: UIViewController {
+class HomeViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        view.backgroundColor = .cyan
     }
     
 

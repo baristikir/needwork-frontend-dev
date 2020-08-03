@@ -10,21 +10,15 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @EnvironmentObject var currentUser: CurrentUserAuth
+    @EnvironmentObject var manager: HttpAuth
     
     var body: some View {
 
-            if !currentUser.isLoggedin {
-                return AnyView(AuthView())
+        if !self.manager.authenticated {
+                return AnyView(SignInView())
             } else {
-                return AnyView(HomeView())
+                return AnyView(AppView())
             }
 
-    }
-}
-
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
     }
 }
