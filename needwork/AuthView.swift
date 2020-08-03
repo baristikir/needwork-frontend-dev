@@ -13,107 +13,135 @@ import Combine
 //View for the Sign In - for existing users
 struct SignInView: View {
     
-    //private members
-    @State private var username: String = ""
+    //Authentication private members - Login Model
+    @State private var email: String = ""
     @State private var password: String = ""
     
-    @EnvironmentObject var currentUserAuth: CurrentUserAuth
+    //Error private members
+    @State var alert = false
+    @State var error = ""
     
-    var manager = HttpAuth()
+    //Environment Object of HttpAuth for Global Http-Transactions
+    @EnvironmentObject var manager: HttpAuth
     
-    //For Signing in
+    //Button Action method when user try's to sign in
     func signIn(){
-        manager.signInHelper(username: self.username, password: self.password)
-        if(manager.authenticated){
-            self.currentUserAuth.loggedIn()
-        }
+        //Check inputs
+        self.verify()
+        //call Http helper method for sign in request to server
+        self.manager.signInHelper(username: self.email, password: self.password)
     }
     
     var body: some View{
-        VStack(alignment: .center){
-            
-            //Heading
-            Text("Welcome")
-                .font(.system(size: 32, weight: .heavy))
-            
-            //Heading2
-            Text("Sign in to continue")
-                .font(.system(size: 16, weight: .medium))
-                .foregroundColor(Color(UIColor.gray))
-            
-            //Vertical Stack for TextField's
-            VStack(spacing: 15)
-            {
-                //Textfield for the username
-                TextField("Enter Username..", text: $username)
-                    .font(.system(size:14))
-                    .padding(12)
-                    .background(RoundedRectangle(cornerRadius: 5).strokeBorder(Color("bg1"), lineWidth: 1))
-                    //.textFieldStyle(RoundedBorderTextFieldStyle())
-                  
-                //Textfield for the password
-                SecureField("Enter Password..", text: $password)
-                    .font(.system(size:14))
-                    .padding(12)
-                    .background(RoundedRectangle(cornerRadius: 5).strokeBorder(Color("bg1"), lineWidth: 1))
-                    //.textFieldStyle(RoundedBorderTextFieldStyle())
+        NavigationView{
+            ZStack{
+                VStack(alignment: .center){
+                    
+                    //Heading
+                    Text("Welcome")
+                        .font(.system(size: 32, weight: .heavy))
+                    
+                    //Heading2
+                    Text("Sign in to continue")
+                        .font(.system(size: 16, weight: .medium))
+                        .foregroundColor(Color(UIColor.gray))
+                    
+                    //Vertical Stack for TextField's
+                    VStack(spacing: 15)
+                    {
+                        //Textfield for the username
+                        TextField("Enter your Email adress..", text: $email)
+                            .font(.system(size:14))
+                            .padding(12)
+                            .background(RoundedRectangle(cornerRadius: 5).strokeBorder(Color("bg1"), lineWidth: 1))
+                        //.textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        //Textfield for the password
+                        SecureField("Enter your Password..", text: $password)
+                            .font(.system(size:14))
+                            .padding(12)
+                            .background(RoundedRectangle(cornerRadius: 5).strokeBorder(Color("bg1"), lineWidth: 1))
+                        //.textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                    }
+                    .padding(.vertical, 64)
+                    
+                    //Login Button
+                    Button(action: signIn) {
+                        //Displayed Button text with styling
+                        Text("Sign In")
+                            .frame(minWidth: 0, maxWidth: .infinity)
+                            .frame(height: 50)
+                            .foregroundColor(Color(UIColor.white))
+                            .font(.system(size:14, weight: .bold))
+                            .background(LinearGradient(gradient: Gradient(colors: [
+                                .blue , .blue ]), startPoint: .leading, endPoint: .trailing))
+                            .cornerRadius(5)
+                    }
+                    
+                    //Layout Sizing
+                    Spacer()
+                    
+                    //Navigation Footer to SignUpView - **for new users**
+                    NavigationLink(destination: SignUpView()) {
+                        HStack{
+                            //Footer SignUp Text
+                            Text("I'm a new user.")
+                                .font(.system(size:14, weight: .light))
+                                .foregroundColor(.primary)
+                            
+                            //Footer SignUp Text
+                            Text("Create an account")
+                                .font(.system(size: 14, weight: .semibold))
+                                .foregroundColor(Color(UIColor.systemBlue))
+                        }
+                    }
+                }
+                    //Horizontal styling - elements margin to edges
+                    .padding(.horizontal, 32)
                 
-            }
-            .padding(.vertical, 64)
-            
-            //Login Button
-            Button(action: signIn) {
-                //Displayed Button text with styling
-                Text("Sign In")
-                    .frame(minWidth: 0, maxWidth: .infinity)
-                    .frame(height: 50)
-                    .foregroundColor(Color(UIColor.white))
-                    .font(.system(size:14, weight: .bold))
-                    .background(LinearGradient(gradient: Gradient(colors: [
-                        .blue , .blue ]), startPoint: .leading, endPoint: .trailing))
-                    .cornerRadius(5)
-            }
-            
-            //Layout Sizing
-            Spacer()
-            
-            //Navigation Footer to SignUpView - **for new users**
-            NavigationLink(destination: SignUpView()) {
-                HStack{
-                    //Footer SignUp Text
-                    Text("I'm a new user.")
-                        .font(.system(size:14, weight: .light))
-                        .foregroundColor(.primary)
-                     
-                    //Footer SignUp Text
-                    Text("Create an account")
-                        .font(.system(size: 14, weight: .semibold))
-                        .foregroundColor(Color(UIColor.systemBlue))
+                //Error handling, when input is empty
+                if self.alert{
+                    ErrorView(alert: self.$alert, error: self.$error)
                 }
             }
         }
-        //Horizontal styling - elements margin to edges
-        .padding(.horizontal, 32)
-
+    }
+    
+    //Checking input fields of username and password
+    func verify(){
+        if self.email != "" && self.password != ""{
+            
+        } else{
+            
+            self.error = "Please fill all the contents properly"
+            self.alert.toggle()
+        }
     }
 }
+
 
 // MARK: - Sign Up
 //View for the Sign Up - for new users
 struct SignUpView: View{
     
-    //private members
+    //Error private members
+    @State var alert = false
+    @State var errorLocal = ""
+    
+    //private members - RegisterModel
     @State var email: String = ""
     @State var password: String = ""
     @State var confirmPassword: String = ""
     @State var error : String = ""
     
-    //Custom HttpAuth object
-    var manager = HttpAuth()
+    //Environment Object of HttpAuth for Global Http Transactions
+    @EnvironmentObject var manager: HttpAuth
     
     //Method for Sign Up handling - connection to Backend
     func signUp() {
-        manager.signUpHelper(username: self.email, password: self.password, confirmPassword: self.confirmPassword)
+        self.verify()
+        self.manager.signUpHelper(username: self.email, password: self.password, confirmPassword: self.confirmPassword)
     }
      
     //Main View of SignUpView
@@ -184,19 +212,24 @@ struct SignUpView: View{
         //Horizontal styling - elements margin to edges
         .padding(.horizontal, 32)
     }
+    
+    //Checking input fields of username and password
+    func verify(){
+        if self.email != "" && self.password != ""{
+            
+        } else{
+            
+            self.errorLocal = "Please fill all the contents properly"
+            self.alert.toggle()
+        }
+    }
 }
 
 // MARK: - Http Client
 class HttpAuth: ObservableObject{
     var didChange = PassthroughSubject<HttpAuth, Never>()
 
-    //By default authenticated property is false
-    var authenticated = false {
-        didSet{
-            //View gets informed that the authenticated State has changed with the didChange variable
-            didChange.send(self)
-        }
-    }
+    @Published var authenticated = false
     
     //Method for SignIn with transactions to the RESTful Server - API
     func signInHelper(username: String, password: String){
@@ -220,8 +253,7 @@ class HttpAuth: ObservableObject{
                     DispatchQueue.main.async {
                         self.authenticated = true
                         
-                        //let currentUser = CurrentUserAuth()
-                        //currentUserAuth.loggedIn()
+                        self.getUserData(userInfo: returnedData)
                     }
                 }
                 if returnedData.successful == false {
@@ -276,10 +308,15 @@ class HttpAuth: ObservableObject{
             }
         }.resume()
     }
+    
+    func getUserData(userInfo: LoginUserInfo){
+        var user = UserDTO(token: userInfo.token)
+        print(user.token)
+    }
 }
 
 //Register Result - Object for storing response data from Server
-struct RegisterUserInfo: Decodable {
+struct RegisterUserInfo: Decodable{
     var id: String?
     var successful: Bool
     var errors: [String]?
@@ -292,22 +329,9 @@ struct LoginUserInfo: Decodable{
     var token: String?
 }
 
-class CurrentUserAuth: ObservableObject {
-    let didChange = PassthroughSubject<CurrentUserAuth,Never>()
-    // required to conform to protocol 'ObservableObject'
-    let willChange = PassthroughSubject<CurrentUserAuth,Never>()
-    
-    func loggedIn() {
-        // login request on success:
-        self.isLoggedin = true
-    }
-    
-    var isLoggedin = false {
-        didSet {
-            didChange.send(self)
-        }
-        
-    }
+struct UserDTO{
+    var token: String?
+    //var name: String
 }
 
 struct AuthView: View {
@@ -315,11 +339,5 @@ struct AuthView: View {
         NavigationView{
             SignInView()
         }
-    }
-}
-
-struct AuthView_Previews: PreviewProvider {
-    static var previews: some View {
-        AuthView()
     }
 }
