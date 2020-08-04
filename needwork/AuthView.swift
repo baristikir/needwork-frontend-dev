@@ -20,7 +20,7 @@ struct SignInView: View {
     //Error private members
     @State var alert = false
     @State var error = ""
-    
+
     //Environment Object of HttpAuth for Global Http-Transactions
     @EnvironmentObject var manager: HttpAuth
     
@@ -28,8 +28,27 @@ struct SignInView: View {
     func signIn(){
         //Check inputs
         self.verify()
-        //call Http helper method for sign in request to server
-        self.manager.signInHelper(username: self.email, password: self.password)
+    }
+    
+    //Checking input fields of username and password
+    func verify(){
+        //When the input fields are not empty try to sign in
+        if self.email != "" && self.password != ""{
+            //call Http helper method for sign in request to server
+            self.manager.signInHelper(username: self.email, password: self.password)
+            if(manager.error != ""){
+                //Check alert state of the HttpAuth which has the connectivity to the server and updates these parameters based on server response
+                if self.manager.alert{
+                    self.error = manager.error
+                    self.alert.toggle()
+                }
+            }
+        }
+        //When the input fields are empty and sign in action was called
+        else{
+            self.error = "Please fill all the contents properly"
+            self.alert.toggle()
+        }
     }
     
     var body: some View{
@@ -107,17 +126,6 @@ struct SignInView: View {
             }
         }
     }
-    
-    //Checking input fields of username and password
-    func verify(){
-        if self.email != "" && self.password != ""{
-            
-        } else{
-            
-            self.error = "Please fill all the contents properly"
-            self.alert.toggle()
-        }
-    }
 }
 
 
@@ -126,8 +134,8 @@ struct SignInView: View {
 struct SignUpView: View{
     
     //Error private members
-    @State var alert = false
-    @State var errorLocal = ""
+    @State private var alert = false
+    @State private var errorLocal = ""
     
     //private members - RegisterModel
     @State var email: String = ""
@@ -142,6 +150,29 @@ struct SignUpView: View{
     func signUp() {
         self.verify()
         self.manager.signUpHelper(username: self.email, password: self.password, confirmPassword: self.confirmPassword)
+    }
+    
+    //Checking input fields of username and password
+    func verify(){
+        if self.email != "" && self.password != "" && self.confirmPassword != ""{
+            //call Http helper method for sign in request to server
+            self.manager.signInHelper(username: self.email, password: self.password)
+            // Check HttpAuth Response state wheter server returned an error
+            if(manager.error != ""){
+                //Check alert state of the HttpAuth which has the connectivity to the server and updates these parameters based on server response
+                if self.manager.alert{
+                    self.error = manager.error
+                    self.alert.toggle()
+                }
+            }
+            
+        }
+        //Empty input fields by signing in action
+        else{
+            
+            self.errorLocal = "Please fill all the contents properly"
+            self.alert.toggle()
+        }
     }
      
     //Main View of SignUpView
@@ -212,17 +243,6 @@ struct SignUpView: View{
         //Horizontal styling - elements margin to edges
         .padding(.horizontal, 32)
     }
-    
-    //Checking input fields of username and password
-    func verify(){
-        if self.email != "" && self.password != ""{
-            
-        } else{
-            
-            self.errorLocal = "Please fill all the contents properly"
-            self.alert.toggle()
-        }
-    }
 }
 
 // MARK: - Http Client
@@ -230,6 +250,11 @@ class HttpAuth: ObservableObject{
     var didChange = PassthroughSubject<HttpAuth, Never>()
 
     @Published var authenticated = false
+    
+    //Error private members
+    var alert = false
+    var error: String = ""
+    var errors: [String] = []
     
     //Method for SignIn with transactions to the RESTful Server - API
     func signInHelper(username: String, password: String){
@@ -258,8 +283,9 @@ class HttpAuth: ObservableObject{
                 }
                 if returnedData.successful == false {
                     DispatchQueue.main.sync(execute: {
-                        let title = "login failed"
-                        print(title)
+                        self.error = returnedData.error?.description ?? "Can't detect"
+                        self.alert = true
+                        print(self.error)
                     })
                 }
             }
@@ -298,8 +324,8 @@ class HttpAuth: ObservableObject{
                 
                 if returnedData.successful == false {
                     DispatchQueue.main.sync(execute: {
-                        let title = "account creation failed"
-                        print(title)
+                        self.errors = returnedData.errors ?? [String]()
+                        self.alert.toggle()
                     })
                 }
             }
