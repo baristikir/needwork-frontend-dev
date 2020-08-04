@@ -9,15 +9,21 @@
 import SwiftUI
 
 struct HomeView: View {
-    var body: some View {
-        
-        Text("Home")
-        
+    
+    @EnvironmentObject var manager: HttpAuth
+    
+    func signOut(){
+        self.manager.authenticated = false
     }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
+    var body: some View {
+        VStack{
+            
+            Text("Home")
+            
+            Button(action: signOut)
+            {
+                Text("Sign Out")
+            }
+        }
     }
 }
