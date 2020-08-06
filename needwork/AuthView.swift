@@ -20,6 +20,7 @@ struct SignInView: View {
     //Error private members
     @State var alert = false
     @State var error = ""
+    @State var visible = false
 
     //Environment Object of HttpAuth for Global Http-Transactions
     @EnvironmentObject var manager: HttpAuth
@@ -56,6 +57,8 @@ struct SignInView: View {
             ZStack{
                 VStack(alignment: .center){
                     
+                    //------- Heading Section
+                    
                     //Heading
                     Text("Welcome")
                         .font(.system(size: 32, weight: .heavy))
@@ -65,21 +68,61 @@ struct SignInView: View {
                         .font(.system(size: 16, weight: .medium))
                         .foregroundColor(Color(UIColor.gray))
                     
+                    //Cover Image
+                    Image("login-image")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 240.0,height:240.0)
+                    
+                    //-------
+                    
+                    
+                    //------- Input Fields + Button Section
+                    
                     //Vertical Stack for TextField's
                     VStack(spacing: 15)
                     {
-                        //Textfield for the username
-                        TextField("Enter your Email adress..", text: $email)
-                            .font(.system(size:14))
-                            .padding(12)
-                            .background(RoundedRectangle(cornerRadius: 5).strokeBorder(Color("bg1"), lineWidth: 1))
-                        //.textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-                        //Textfield for the password
-                        SecureField("Enter your Password..", text: $password)
-                            .font(.system(size:14))
-                            .padding(12)
-                            .background(RoundedRectangle(cornerRadius: 5).strokeBorder(Color("bg1"), lineWidth: 1))
+                        HStack{
+                            Image(systemName: "person")
+                                .foregroundColor(.secondary)
+                            //Textfield for the username
+                            TextField("Enter your Email adress..", text: $email)
+                                .font(.system(size:14))
+                                .padding(12)
+                                .background(RoundedRectangle(cornerRadius: 5).strokeBorder(Color("bg1"), lineWidth: 1))
+                            //.textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
+                               
+                        HStack{
+                            
+                            Image(systemName: "lock")
+                                .foregroundColor(.secondary)
+                            
+                            //Textfield for the password
+                            if self.visible {
+                                TextField("Enter your Password..", text: $password)
+                                    .font(.system(size:14))
+                                    .padding(12)
+                                    .background(RoundedRectangle(cornerRadius: 5).strokeBorder(Color("bg1"), lineWidth: 1))
+                            } else{
+                                SecureField("Enter your Password..", text: $password)
+                                    .font(.system(size:14))
+                                    .padding(12)
+                                    .background(RoundedRectangle(cornerRadius: 5).strokeBorder(Color("bg1"), lineWidth: 1))
+                            }
+                            
+                            Button(action: {
+                                self.visible.toggle()
+                            }) {
+                                Image(systemName: self.visible ? "eye.slash.fill" : "eye.fill")
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                        //Textfield for the password with hidden password
+//                        SecureField("Enter your Password..", text: $password)
+//                            .font(.system(size:14))
+//                            .padding(12)
+//                            .background(RoundedRectangle(cornerRadius: 5).strokeBorder(Color("bg1"), lineWidth: 1))
                         //.textFieldStyle(RoundedBorderTextFieldStyle())
                         
                     }
@@ -118,6 +161,8 @@ struct SignInView: View {
                 }
                     //Horizontal styling - elements margin to edges
                     .padding(.horizontal, 32)
+                
+                //-------
                 
                 //Error handling, when input is empty
                 if self.alert{
