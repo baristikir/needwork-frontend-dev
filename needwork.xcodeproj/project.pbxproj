@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -21,6 +21,8 @@
 		3E7E554024CCA4A7002DEDBC /* needworkUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E553F24CCA4A7002DEDBC /* needworkUITests.swift */; };
 		3E9F2CBF24D8A03600CDB2BB /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9F2CBE24D8A03600CDB2BB /* MapView.swift */; };
 		3E9F2CC124D8A24300CDB2BB /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E9F2CC024D8A24300CDB2BB /* AppView.swift */; };
+		3EC0AE5324DDC9F400208E83 /* BottomBar-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3EC0AE5224DDC9F400208E83 /* BottomBar-SwiftUI */; };
+		3EC73F5324DCBD7500010A0B /* ExpandableCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC73F5224DCBD7500010A0B /* ExpandableCardView.swift */; };
 		3EDB6AC224CEF880009968A4 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDB6AC124CEF880009968A4 /* AuthView.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +64,7 @@
 		3E7E554124CCA4A7002DEDBC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3E9F2CBE24D8A03600CDB2BB /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		3E9F2CC024D8A24300CDB2BB /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
+		3EC73F5224DCBD7500010A0B /* ExpandableCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCardView.swift; sourceTree = "<group>"; };
 		3EDB6AC124CEF880009968A4 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -70,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3EC0AE5324DDC9F400208E83 /* BottomBar-SwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,6 +117,7 @@
 		3E7E551C24CCA4A5002DEDBC /* needwork */ = {
 			isa = PBXGroup;
 			children = (
+				3EC73F5124DCBD5700010A0B /* Card */,
 				3E7E551D24CCA4A5002DEDBC /* AppDelegate.swift */,
 				3E7E551F24CCA4A5002DEDBC /* SceneDelegate.swift */,
 				3E7E552124CCA4A5002DEDBC /* ContentView.swift */,
@@ -157,6 +162,14 @@
 			path = needworkUITests;
 			sourceTree = "<group>";
 		};
+		3EC73F5124DCBD5700010A0B /* Card */ = {
+			isa = PBXGroup;
+			children = (
+				3EC73F5224DCBD7500010A0B /* ExpandableCardView.swift */,
+			);
+			path = Card;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -173,6 +186,9 @@
 			dependencies = (
 			);
 			name = needwork;
+			packageProductDependencies = (
+				3EC0AE5224DDC9F400208E83 /* BottomBar-SwiftUI */,
+			);
 			productName = needwork;
 			productReference = 3E7E551A24CCA4A5002DEDBC /* needwork.app */;
 			productType = "com.apple.product-type.application";
@@ -245,6 +261,9 @@
 				Base,
 			);
 			mainGroup = 3E7E551124CCA4A5002DEDBC;
+			packageReferences = (
+				3EC0AE5124DDC9F400208E83 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */,
+			);
 			productRefGroup = 3E7E551B24CCA4A5002DEDBC /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -289,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				3E7E551E24CCA4A5002DEDBC /* AppDelegate.swift in Sources */,
+				3EC73F5324DCBD7500010A0B /* ExpandableCardView.swift in Sources */,
 				3E7E552024CCA4A5002DEDBC /* SceneDelegate.swift in Sources */,
 				3EDB6AC224CEF880009968A4 /* AuthView.swift in Sources */,
 				3E1C3A2124D21D7000C5D60E /* HomeView.swift in Sources */,
@@ -616,6 +636,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		3EC0AE5124DDC9F400208E83 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/smartvipere75/bottombar-swiftui";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3EC0AE5224DDC9F400208E83 /* BottomBar-SwiftUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 3EC0AE5124DDC9F400208E83 /* XCRemoteSwiftPackageReference "bottombar-swiftui" */;
+			productName = "BottomBar-SwiftUI";
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 3E7E551224CCA4A5002DEDBC /* Project object */;
 }

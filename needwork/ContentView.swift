@@ -14,7 +14,7 @@ struct ContentView: View {
     
     var body: some View {
 
-        if !self.manager.authenticated {
+        if self.manager.authenticated {
                 return AnyView(SignInView())
             } else {
                 return AnyView(AppView())
