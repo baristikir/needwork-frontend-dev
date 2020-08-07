@@ -8,6 +8,21 @@
 
 import SwiftUI
 
+
+// COLORS
+let backgroundColor = Color(#colorLiteral(red: 0.9478042722, green: 0.9413100481, blue: 0.937730968, alpha: 1))
+let textColor = Color(#colorLiteral(red: 0.2569463253, green: 0.2420758605, blue: 0.2151646316, alpha: 1))
+let secondaryColor = Color(#colorLiteral(red: 0.5676505566, green: 0.5602197647, blue: 0.5466300845, alpha: 1))
+let accentTextColor = Color(#colorLiteral(red: 0.6852199435, green: 0.6780956984, blue: 0.6678422093, alpha: 1))
+let firstCardColor = Color(#colorLiteral(red: 0.6142973304, green: 0.6206635833, blue: 0.583666563, alpha: 1))
+let secondaryAccentTextColor = Color(#colorLiteral(red: 0.7871719599, green: 0.7800607085, blue: 0.7697893977, alpha: 1))
+let secondCardColor = Color(#colorLiteral(red: 0.5775497556, green: 0.5494823456, blue: 0.4757016897, alpha: 1))
+let thirdCardColor = Color(#colorLiteral(red: 0.4129932523, green: 0.3736724257, blue: 0.3598947823, alpha: 1))
+let fourthCardColor = Color(#colorLiteral(red: 0.2431854308, green: 0.2543239295, blue: 0.3014985323, alpha: 1))
+let dividerColor = Color(#colorLiteral(red: 0.2628910542, green: 0.2736267447, blue: 0.3174280226, alpha: 1))
+let opaqueColor = Color(#colorLiteral(red: 0.3335806727, green: 0.343891114, blue: 0.3843034506, alpha: 1))
+
+
 struct Item: Identifiable{
     var id = UUID()
     var name: String
@@ -69,6 +84,7 @@ struct HomeView: View {
                                 .font(.system(size: 40, weight: .bold, design: .default))
                                 .foregroundColor(.black)
                         }
+                                                
                         Spacer()
                         
                          Image(systemName: "person")
@@ -80,6 +96,7 @@ struct HomeView: View {
                   
                     //--------- Heading Section
 
+                    horizontalScroll()
                     
                     //--------- Cards Section
                     
@@ -139,7 +156,7 @@ struct HomeView: View {
                                                             Text("\(thisItem.subtitle)")
                                                                 .font(.system(size: 18, weight: .bold, design: .default))
                                                                 .foregroundColor(.white).opacity(0.6)
-                                                            Text("\(thisItem.name)")
+                                                            Text("\(thisItem.name)").kerning(-0.5)
                                                                 .font(.system(size: 36, weight: .bold, design: .default))
                                                         }.padding()
                                                         Spacer()
@@ -158,6 +175,10 @@ struct HomeView: View {
                                                         Spacer()
                                                     }
                                                 }.frame(width: self.SVWidth)
+                                                .background(
+                                                    ZStack{
+                                                        LinearGradient(gradient: Gradient(colors: [Color.black.opacity(0.18), Color.black.opacity(0.0)]), startPoint: .top, endPoint: .bottom)
+                                                })
                                             }
                                         }
                                         .cornerRadius(15.0).foregroundColor(.white)
@@ -255,9 +276,64 @@ struct HomeView: View {
                 .opacity(self.expandedScreen_shown ? 1 : 0.0)
                 .animation(Animation.easeInOut(duration: 0.05)
                     .delay(self.expandedScreen_willHide ? 0.5 : 0))
-        }
+            }
     }
 }
+
+// -- Horizontal Scroll of Categorys -- //
+fileprivate func horizontalScroll() -> some View{
+    
+    var selected = true
+    
+    return // top horizontal scroll
+        ScrollView(.horizontal, showsIndicators: false){
+            HStack{
+                Color.clear.frame(width:13)
+                
+                //
+                VStack{
+                    //First Item of Categories
+                    Text("Co-Working")
+                        .kerning(-0.5)
+                        .foregroundColor(Color.white)
+                        .font(.custom("HelveticaNeue-Medium", size: 18))
+                        .padding([.vertical], 5)
+                        .padding([.horizontal], 10)
+                        .background(selected ? secondaryAccentTextColor : Color.clear)
+                        .cornerRadius(15)
+                }.onTapGesture {
+                    print("tapped")
+                    selected.toggle()
+                }
+                
+                //Distance as background color to next category item
+                Color.clear.frame(width: 90)
+                
+                //Second Item of Categories
+                Text("Working")
+                    .kerning(-0.5)
+                    .foregroundColor(secondaryAccentTextColor)
+                    .font(.custom("HelveticaNeue-Medium",
+                                  size: 18))
+                
+                //Distance as background color to next category item
+                Color.clear.frame(width: 20)
+                
+                //Second Item of Categories
+                Text("Learning")
+                    .kerning(-0.5)
+                    .foregroundColor(secondaryAccentTextColor)
+                    .font(.custom("HelveticaNeue-Medium",
+                                  size: 18))
+            }
+        }.padding([.bottom], 20).padding([.top],15)
+}
+
+
+
+
+
+// --- Preview Section --- //
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
