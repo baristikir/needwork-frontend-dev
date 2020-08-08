@@ -22,6 +22,8 @@
 		3EC0AE5324DDC9F400208E83 /* BottomBar-SwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 3EC0AE5224DDC9F400208E83 /* BottomBar-SwiftUI */; };
 		3EC0AE5524DE0A6B00208E83 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AE5424DE0A6B00208E83 /* ProfileView.swift */; };
 		3EC0AE5724DE0A7900208E83 /* FavoritesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AE5624DE0A7900208E83 /* FavoritesView.swift */; };
+		3EC0AE5A24DE1F7A00208E83 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AE5924DE1F7A00208E83 /* Coordinator.swift */; };
+		3EC0AE5E24DE207600208E83 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AE5D24DE207600208E83 /* LocationManager.swift */; };
 		3EC73F5324DCBD7500010A0B /* ExpandableCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC73F5224DCBD7500010A0B /* ExpandableCardView.swift */; };
 		3EDB6AC224CEF880009968A4 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDB6AC124CEF880009968A4 /* AuthView.swift */; };
 /* End PBXBuildFile section */
@@ -64,6 +66,8 @@
 		3E9F2CC024D8A24300CDB2BB /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		3EC0AE5424DE0A6B00208E83 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		3EC0AE5624DE0A7900208E83 /* FavoritesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesView.swift; sourceTree = "<group>"; };
+		3EC0AE5924DE1F7A00208E83 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
+		3EC0AE5D24DE207600208E83 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		3EC73F5224DCBD7500010A0B /* ExpandableCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCardView.swift; sourceTree = "<group>"; };
 		3EDB6AC124CEF880009968A4 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -117,17 +121,19 @@
 		3E7E551C24CCA4A5002DEDBC /* needwork */ = {
 			isa = PBXGroup;
 			children = (
+				3EC0AE5C24DE206B00208E83 /* Coordinators */,
+				3EC0AE5B24DE206500208E83 /* Managers */,
 				3EC73F5124DCBD5700010A0B /* Card */,
 				3E7E551D24CCA4A5002DEDBC /* AppDelegate.swift */,
 				3E7E551F24CCA4A5002DEDBC /* SceneDelegate.swift */,
 				3E7E552124CCA4A5002DEDBC /* ContentView.swift */,
 				3EDB6AC124CEF880009968A4 /* AuthView.swift */,
+				3E152C4724D72ECB001EE3E9 /* ErrorView.swift */,
 				3E9F2CC024D8A24300CDB2BB /* AppView.swift */,
 				3E1C3A2024D21D7000C5D60E /* HomeView.swift */,
 				3E9F2CBE24D8A03600CDB2BB /* MapView.swift */,
-				3E152C4724D72ECB001EE3E9 /* ErrorView.swift */,
-				3EC0AE5424DE0A6B00208E83 /* ProfileView.swift */,
 				3EC0AE5624DE0A7900208E83 /* FavoritesView.swift */,
+				3EC0AE5424DE0A6B00208E83 /* ProfileView.swift */,
 				3E7E552324CCA4A7002DEDBC /* Assets.xcassets */,
 				3E7E552824CCA4A7002DEDBC /* LaunchScreen.storyboard */,
 				3E7E552B24CCA4A7002DEDBC /* Info.plist */,
@@ -160,6 +166,22 @@
 				3E7E554124CCA4A7002DEDBC /* Info.plist */,
 			);
 			path = needworkUITests;
+			sourceTree = "<group>";
+		};
+		3EC0AE5B24DE206500208E83 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				3EC0AE5D24DE207600208E83 /* LocationManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		3EC0AE5C24DE206B00208E83 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				3EC0AE5924DE1F7A00208E83 /* Coordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		3EC73F5124DCBD5700010A0B /* Card */ = {
@@ -315,9 +337,11 @@
 				3EC0AE5524DE0A6B00208E83 /* ProfileView.swift in Sources */,
 				3E1C3A2124D21D7000C5D60E /* HomeView.swift in Sources */,
 				3E7E552224CCA4A5002DEDBC /* ContentView.swift in Sources */,
+				3EC0AE5A24DE1F7A00208E83 /* Coordinator.swift in Sources */,
 				3E9F2CBF24D8A03600CDB2BB /* MapView.swift in Sources */,
 				3E9F2CC124D8A24300CDB2BB /* AppView.swift in Sources */,
 				3E152C4824D72ECB001EE3E9 /* ErrorView.swift in Sources */,
+				3EC0AE5E24DE207600208E83 /* LocationManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -484,6 +508,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"needwork/Preview Content\"";
+				DEVELOPMENT_TEAM = PAXG8TZU4C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = needwork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -503,6 +528,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"needwork/Preview Content\"";
+				DEVELOPMENT_TEAM = PAXG8TZU4C;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = needwork/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

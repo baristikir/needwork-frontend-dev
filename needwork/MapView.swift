@@ -10,22 +10,29 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
+    
+    private var locationManager = LocationManager()
+    
     var body: some View {
-        VStack{
-//            HStack{
-//                SearchView()
-//            }.padding(.horizontal)
+        ZStack{
             
-            MapsView()
-                .edgesIgnoringSafeArea(.all)
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(0 ..< 5) { card in
-                        CardView()
+            VStack{
+                MapsView()
+                    .edgesIgnoringSafeArea(.all)
+
+                //SearchView()
+                
+                VStack{
+                    
+                    ScrollView(.horizontal, showsIndicators: false) {
+                        HStack {
+                            ForEach(0 ..< 5) { card in
+                                CardView()
+                            }
+                            .padding(.leading)
+                            .padding(.trailing, 8)
+                        }
                     }
-                    .padding(.leading)
-                    .padding(.trailing, 8)
                 }
             }
         }
@@ -35,10 +42,21 @@ struct MapView: View {
 
 //---- Start - Google Maps View Integration ----//
 struct MapsView: UIViewRepresentable {
+ 
     
     func makeUIView(context: UIViewRepresentableContext<MapsView>) -> MKMapView {
         let mapView = MKMapView()
+        
+        mapView.delegate = context.coordinator
+        //manager.delegate = context.coordinator
+        
+        mapView.showsUserLocation = true
+        
         return mapView
+    }
+    
+    func makeCoordinator() -> Coordinator{
+        Coordinator(self)
     }
     
     func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<MapsView>) {
@@ -49,6 +67,7 @@ struct MapsView: UIViewRepresentable {
 
 struct CardView: View {
     var body: some View {
+        ZStack{
         VStack {
             Image("Cafe2")
                 .resizable()
@@ -106,10 +125,14 @@ struct CardView: View {
                 }
             }
             .padding([.horizontal, .bottom])
+            
         }
         .frame(width: 270)
         .background(Color(.secondarySystemFill))
         .cornerRadius(8)
+        
+        
+        }
     }
 }
 
@@ -140,6 +163,7 @@ struct SearchView: View{
                 
                 HStack{
                     TextField("Search", text: $search)
+                        .padding()
                     
                     Image(systemName: "magnifyingglass")
                         .font(Font.system(size:22).weight(.bold))
@@ -149,6 +173,19 @@ struct SearchView: View{
                         .cornerRadius(12)
                 }
         }.padding(.horizontal)
+    }
+}
+
+struct ButtonView: View{
+    var body: some View{
+        Button(action: {
+            print("clicked")
+        })
+        {
+            VStack{
+                Text("New")
+            }
+        }
     }
 }
 
