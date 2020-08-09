@@ -21,6 +21,7 @@ let thirdCardColor = Color(#colorLiteral(red: 0.4129932523, green: 0.3736724257,
 let fourthCardColor = Color(#colorLiteral(red: 0.2431854308, green: 0.2543239295, blue: 0.3014985323, alpha: 1))
 let dividerColor = Color(#colorLiteral(red: 0.2628910542, green: 0.2736267447, blue: 0.3174280226, alpha: 1))
 let opaqueColor = Color(#colorLiteral(red: 0.3335806727, green: 0.343891114, blue: 0.3843034506, alpha: 1))
+let cardBadgetFrameColor = Color(#colorLiteral(red: 0.4392156863, green: 0.4392156863, blue: 0.4392156863, alpha: 1))
 
 
 struct Item: Identifiable{
@@ -31,11 +32,12 @@ struct Item: Identifiable{
     var subtitle: String
     var image: String
     var ratings: String
+    var features: [BadgetItem]
 }
 
 struct HomeView: View {
     
-    @State var expandedItem = Item(name:"Oberholz",type: "Coworking Cafe", description: "Cafe", subtitle: "", image: "", ratings: "4.9")
+    @State var expandedItem = Item(name:"Oberholz",type: "Coworking Cafe", description: "Cafe", subtitle: "", image: "", ratings: "4.9", features: [BadgetItem(icon: Image("Icon-Wifi"), title: "Free Wifi"),BadgetItem(icon: Image("Icon-Wifi"), title: "Quite")])
     @State var expandedScreen_startPoint = CGRect(x: 0, y: 0, width: 100, height: 100)
     @State var expandedScreen_returnPoint = CGRect(x: 0, y: 0, width: 100, height: 100)
     @State var expandedScreen_shown = false
@@ -91,7 +93,6 @@ struct HomeView: View {
                     
                     
                     //--------- Categories Section ---------//
-                    
                     horizontalScroll()
                     Divider()
                     //--------- Categories Section ---------//
@@ -111,14 +112,13 @@ struct HomeView: View {
                     //--------- Cards Section ---------//
                     HomeCardHeaderTextView()
                     HomeCardView(show: self.$show, selected: self.$expandedItem)
-                    
                     //--------- Cards Section --------- //
                 }
                 
             }
             
             if self.show{
-               //Detail(selected: self.$expandedItem, show: self.$show)
+               Detail(selected: self.$expandedItem, show: self.$show)
             }
         }
         
@@ -207,7 +207,7 @@ struct HomeView: View {
 
 // --- 3D Touch Feature --- //
 func addToFavorites(place: Item) {
-    var currentPlace = place
+    let currentPlace = place
 }
 
 // -- Horizontal Scroll of Categorys -- //
@@ -331,7 +331,7 @@ struct CloseButtonView: View{
     
     var body: some View{
         VStack {
-            Button(action: closeButtonAction){
+            Button(action: closeButtonAction){
                 Image(systemName: "xmark")
                     .font(Font.body.weight(.medium))
                     .foregroundColor(.white)
@@ -383,17 +383,61 @@ struct HomeCardHeaderTextView: View {
 struct HomeCardView: View{
     //Variables
     var places:[Item] = [
-        Item(name: "St Oberholz", type: "Coworking Cafe", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Etiam tempor orci eu lobortis elementum nibh. Cras sed felis eget velit aliquet sagittis. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Mi quis hendrerit dolor magna eget est lorem. Gravida dictum fusce ut placerat orci nulla pellentesque. Mauris sit amet massa vitae tortor condimentum lacinia quis vel. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Eget dolor morbi non arcu risus. Placerat duis ultricies lacus sed turpis tincidunt. Aliquet sagittis id consectetur purus. Orci phasellus egestas tellus rutrum tellus pellentesque eu. Morbi tristique senectus et netus. Elementum facilisis leo vel fringilla est ullamcorper eget. Pellentesque elit eget gravida cum sociis. Ultricies tristique nulla aliquet enim tortor at. Risus viverra adipiscing at in. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Etiam tempor orci eu lobortis elementum nibh. Cras sed felis eget velit aliquet sagittis. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Mi quis hendrerit dolor magna eget est lorem. Gravida dictum fusce ut placerat orci nulla pellentesque. Mauris sit amet massa vitae tortor condimentum lacinia quis vel. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Eget dolor morbi non arcu risus. Placerat duis ultricies lacus sed turpis tincidunt. Aliquet sagittis id consectetur purus. Orci phasellus egestas tellus rutrum tellus pellentesque eu. Morbi tristique senectus et netus. Elementum facilisis leo vel fringilla est ullamcorper eget. Pellentesque elit eget gravida cum sociis. Ultricies tristique nulla aliquet enim tortor at. Risus viverra adipiscing at in.", subtitle: "Cafe", image: "CafeOberholz", ratings: "5"),
-        Item(name: "St Oberholz 2", type: "Coworking Cafe", description: "Workplace for freelancers / students and more", subtitle: "Cafe", image: "Cafe2-1", ratings: "3.8"),
-        Item(name: "Freelance Working Station", type: "Freelance Workplace", description: "Workplace for freelancers / students and more", subtitle: "Workplace", image: "Cafe3-1",ratings: "4.8"),
-        Item(name: "Microsoft Cafe", type: "Coworking Cafe", description: "Workplace for freelancers / students and more", subtitle: "Cafe", image: "Cafe5",ratings: "4.3"),
+        Item(name: "St Oberholz", type: "Coworking Cafe", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Etiam tempor orci eu lobortis elementum nibh. Cras sed felis eget velit aliquet sagittis. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Mi quis hendrerit dolor magna eget est lorem. Gravida dictum fusce ut placerat orci nulla pellentesque. Mauris sit amet massa vitae tortor condimentum lacinia quis vel. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Eget dolor morbi non arcu risus. Placerat duis ultricies lacus sed turpis tincidunt. Aliquet sagittis id consectetur purus. Orci phasellus egestas tellus rutrum tellus pellentesque eu. Morbi tristique senectus et netus. Elementum facilisis leo vel fringilla est ullamcorper eget. Pellentesque elit eget gravida cum sociis. Ultricies tristique nulla aliquet enim tortor at. Risus viverra adipiscing at in. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Etiam tempor orci eu lobortis elementum nibh. Cras sed felis eget velit aliquet sagittis. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Mi quis hendrerit dolor magna eget est lorem. Gravida dictum fusce ut placerat orci nulla pellentesque. Mauris sit amet massa vitae tortor condimentum lacinia quis vel. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Eget dolor morbi non arcu risus. Placerat duis ultricies lacus sed turpis tincidunt. Aliquet sagittis id consectetur purus. Orci phasellus egestas tellus rutrum tellus pellentesque eu. Morbi tristique senectus et netus. Elementum facilisis leo vel fringilla est ullamcorper eget. Pellentesque elit eget gravida cum sociis. Ultricies tristique nulla aliquet enim tortor at. Risus viverra adipiscing at in.", subtitle: "Cafe", image: "CafeOberholz", ratings: "5", features: [BadgetItem(icon: Image("Icon-Wifi"), title: "Free Wifi")]),
+        Item(name: "St Oberholz 2", type: "Coworking Cafe", description: "Workplace for freelancers / students and more", subtitle: "Cafe", image: "Cafe2-1", ratings: "3.8", features: [BadgetItem(icon: Image("Icon-Wifi"), title: "Free Wifi")]),
+        Item(name: "Freelance Working Station", type: "Freelance Workplace", description: "Workplace for freelancers / students and more", subtitle: "Workplace", image: "Cafe3-1",ratings: "4.8", features: [BadgetItem(icon: Image("Icon-Wifi"), title: "Free Wifi")]),
+        Item(name: "Microsoft Cafe", type: "Coworking Cafe", description: "Workplace for freelancers / students and more", subtitle: "Cafe", image: "Cafe5",ratings: "4.3", features: [BadgetItem(icon: Image("Icon-Wifi"), title: "Free Wifi")]),
     ]
+    
     @Binding var show: Bool
     @Binding var selected: Item
+    @State private var selectedIndex: Int = 0
     
     let itemHeight: CGFloat = 300
     let itemWidth: CGFloat = 400
     let SVWidth = UIScreen.main.bounds.width - 40
+    
+    
+//    func badgetTitles(place: Item) -> [Image] {
+//        let titles = place.features
+//        switch titles {
+//        case <#pattern#>:
+//            <#code#>
+//        default:
+//            <#code#>
+//        }
+//    }
+//    func BadgetView(place: Item) -> some View{
+//        var item = place.features
+//
+//        return (
+//            HStack{
+//                ForEach(item,id: \.self) { i in
+//                    HStack{
+//                        i.icon
+//                            .resizable()
+//                            .scaledToFit()
+//                            .frame(width: 25, height: 25)
+//                            .padding(.leading, 12)
+//
+//                        Text(i.title)
+//                            .font(.system(size: 16))
+//                            .bold()
+//                            .foregroundColor(Color(.white))
+//                            .padding(.top)
+//                            .padding(.trailing)
+//                            .padding(.bottom)
+//                            .padding(.leading, 5)
+//                    }.background(cardBadgetFrameColor.opacity(0.87))
+//                        .clipShape(Capsule())
+//                        .padding(.leading, 10)
+//                        .padding(.trailing, 10)
+//                }
+//            }
+//
+//        )
+//    }
+    
     
     var body: some View{
        // TabView {
@@ -434,10 +478,85 @@ struct HomeCardView: View{
                                             HStack{
                                                 
                                                 VStack(alignment: .leading){
-                                                    Text("\(thisPlace.description)")
-                                                        .lineLimit(2)
-                                                        .font(.system(size: 18, weight: .bold, design: .default))
-                                                        .foregroundColor(.init(red: 0.9, green: 0.9, blue: 0.9)).opacity(0.8)
+                                                    ScrollView(.horizontal, showsIndicators: false){
+                                                        HStack{
+                                                            HStack{
+                                                                
+                                                                Image("Icon-Wifi")
+                                                                    .resizable()
+                                                                    .scaledToFit()
+                                                                    .frame(width: 25, height: 25)
+                                                                    .padding(.leading, 12)
+                                                                
+                                                                Text("Free Wifi")
+                                                                    .font(.system(size: 16))
+                                                                    .bold()
+                                                                    .foregroundColor(Color(.white))
+                                                                    .padding(.top)
+                                                                    .padding(.trailing)
+                                                                    .padding(.bottom)
+                                                                    .padding(.leading, 5)
+                                                                
+                                                                //                                                            self.BadgetView(place: thisPlace)
+                                                            }.background(cardBadgetFrameColor.opacity(0.87))
+                                                                .clipShape(Capsule())
+                                                                .padding(.leading, 10)
+                                                                .padding(.trailing, 10)
+                                                            
+                                                            HStack{
+                                                                
+                                                                Image("Icon-Plugs")
+                                                                    .resizable()
+                                                                    .scaledToFit()
+                                                                    .frame(width: 25, height: 25)
+                                                                    .padding(.leading, 12)
+                                                                
+                                                                Text("Free Charging")
+                                                                    .font(.system(size: 16))
+                                                                    .bold()
+                                                                    .foregroundColor(Color(.white))
+                                                                    .padding(.top)
+                                                                    .padding(.trailing)
+                                                                    .padding(.bottom)
+                                                                    .padding(.leading, 5)
+                                                                
+                                                            }.background(cardBadgetFrameColor.opacity(0.87))
+                                                                .clipShape(Capsule())
+                                                                .padding(.leading, 10)
+                                                                .padding(.trailing, 10)
+                                                            
+                                                            HStack{
+                                                                
+                                                                Image("Icon-Silent")
+                                                                    .resizable()
+                                                                    .scaledToFit()
+                                                                    .frame(width: 25, height: 25)
+                                                                    .padding(.leading, 12)
+                                                                
+                                                                Text("Quite")
+                                                                    .font(.system(size: 16))
+                                                                    .bold()
+                                                                    .foregroundColor(Color(.white))
+                                                                    .padding(.top)
+                                                                    .padding(.trailing)
+                                                                    .padding(.bottom)
+                                                                    .padding(.leading, 5)
+                                                                
+                                                            }.background(cardBadgetFrameColor.opacity(0.87))
+                                                                .clipShape(Capsule())
+                                                                .padding(.leading, 10)
+                                                                .padding(.trailing, 10)
+                                                            
+                                                            
+                                                        }
+                                                    }
+                                                    
+                                                    
+                                                    
+//                                                    Text("\(thisPlace.description)")
+//                                                        .lineLimit(2)
+//                                                        .font(.system(size: 18, weight: .bold, design: .default))
+//                                                        .foregroundColor(.init(red: 0.9, green: 0.9, blue: 0.9)).opacity(0.8)
                                                 }.padding()
                                                 Spacer()
                                             }
@@ -485,15 +604,15 @@ struct HomeCardView: View{
 
 // --- Detail View of any selected Card/Place --- //
 struct Detail : View {
-//    @Binding var selected : Item
-//    @Binding var show : Bool
+    @Binding var selected : Item
+    @Binding var show : Bool
     
     
     // --- Test Purpose only --- //
     
-    var testItem = Item(name: "St Oberholz", type: "Coworking Cafe", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Etiam tempor orci eu lobortis elementum nibh. Cras sed felis eget velit aliquet sagittis. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Mi quis hendrerit dolor magna eget est lorem. Gravida dictum fusce ut placerat orci nulla pellentesque. Mauris sit amet massa vitae tortor condimentum lacinia quis vel. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Eget dolor morbi non arcu risus. Placerat duis ultricies lacus sed turpis tincidunt. Aliquet sagittis id consectetur purus. Orci phasellus egestas tellus rutrum tellus pellentesque eu. Morbi tristique senectus et netus. Elementum facilisis leo vel fringilla est ullamcorper eget. Pellentesque elit eget gravida cum sociis. Ultricies tristique nulla aliquet enim tortor at. Risus viverra adipiscing at in. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Etiam tempor orci eu lobortis elementum nibh. Cras sed felis eget velit aliquet sagittis. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Mi quis hendrerit dolor magna eget est lorem. Gravida dictum fusce ut placerat orci nulla pellentesque. Mauris sit amet massa vitae tortor condimentum lacinia quis vel. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Eget dolor morbi non arcu risus. Placerat duis ultricies lacus sed turpis tincidunt. Aliquet sagittis id consectetur purus. Orci phasellus egestas tellus rutrum tellus pellentesque eu. Morbi tristique senectus et netus. Elementum facilisis leo vel fringilla est ullamcorper eget. Pellentesque elit eget gravida cum sociis. Ultricies tristique nulla aliquet enim tortor at. Risus viverra adipiscing at in.", subtitle: "Cafe", image: "CafeOberholz", ratings: "5.0")
-    
-    var show:Bool = false
+//    var testItem = Item(name: "St Oberholz", type: "Coworking Cafe", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Etiam tempor orci eu lobortis elementum nibh. Cras sed felis eget velit aliquet sagittis. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Mi quis hendrerit dolor magna eget est lorem. Gravida dictum fusce ut placerat orci nulla pellentesque. Mauris sit amet massa vitae tortor condimentum lacinia quis vel. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Eget dolor morbi non arcu risus. Placerat duis ultricies lacus sed turpis tincidunt. Aliquet sagittis id consectetur purus. Orci phasellus egestas tellus rutrum tellus pellentesque eu. Morbi tristique senectus et netus. Elementum facilisis leo vel fringilla est ullamcorper eget. Pellentesque elit eget gravida cum sociis. Ultricies tristique nulla aliquet enim tortor at. Risus viverra adipiscing at in. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Etiam tempor orci eu lobortis elementum nibh. Cras sed felis eget velit aliquet sagittis. Nibh sit amet commodo nulla facilisi nullam vehicula ipsum. Pretium fusce id velit ut tortor pretium viverra suspendisse potenti. Mi quis hendrerit dolor magna eget est lorem. Gravida dictum fusce ut placerat orci nulla pellentesque. Mauris sit amet massa vitae tortor condimentum lacinia quis vel. Aenean vel elit scelerisque mauris pellentesque pulvinar pellentesque. Eget dolor morbi non arcu risus. Placerat duis ultricies lacus sed turpis tincidunt. Aliquet sagittis id consectetur purus. Orci phasellus egestas tellus rutrum tellus pellentesque eu. Morbi tristique senectus et netus. Elementum facilisis leo vel fringilla est ullamcorper eget. Pellentesque elit eget gravida cum sociis. Ultricies tristique nulla aliquet enim tortor at. Risus viverra adipiscing at in.", subtitle: "Cafe", image: "CafeOberholz", ratings: "5.0")
+//
+//    var show:Bool = false
     
     // --- Test Purpose only --- //
 
@@ -505,7 +624,7 @@ struct Detail : View {
                     
                     ZStack(alignment: Alignment(horizontal: .center, vertical: .top)) {
                         
-                        Image(testItem.image)
+                        Image(selected.image)
                             .resizable()
                             .aspectRatio(contentMode: .fill)
                             .frame(width: UIScreen.main.bounds.width, height: 330)
@@ -519,7 +638,7 @@ struct Detail : View {
                             
                             Button(action: {
                                 
-                                //withAnimation(.spring()){self.show.toggle()}
+                                withAnimation(.spring()){self.show.toggle()}
                                 
                             }) {
                                 
@@ -555,7 +674,7 @@ struct Detail : View {
                         
                         VStack(alignment: .leading, spacing: 12) {
                             
-                            Text(testItem.name)
+                            Text(selected.name)
                                 .font(.title)
                                 .foregroundColor(Color(.black))
                                 .fontWeight(.bold)
@@ -564,19 +683,17 @@ struct Detail : View {
                                                  
                                 Image(systemName: "markLocation")
                                 
-                                Text(testItem.subtitle)
+                                Text(selected.subtitle)
                                     .fontWeight(.medium)
                                     .multilineTextAlignment(.leading)
-                                    .accentColor(.white)
                                     .foregroundColor(Color.white)
                                     .frame(width: 70.0, height: 30.0)
-                                    .background(Color.blue)
+                                    .background(accentTextColor)
                                     .clipShape(Capsule())
-                                    .padding()
                                 
                                 HStack(spacing: 5){
                                     
-                                    Text(testItem.ratings)
+                                    Text(selected.ratings)
                                         .foregroundColor(.black)
                                     
                                     Image(systemName: "star.fill")
@@ -590,7 +707,6 @@ struct Detail : View {
                         
                     }
                     .padding()
-                    .padding(.bottom)
                 }
                 .background(Color.white)
                 .clipShape(RoundedShape(corners: [.bottomLeft,.bottomRight]))
@@ -625,34 +741,6 @@ struct BottomView : View {
                 .font(.title)
                 .fontWeight(.bold)
                 .foregroundColor(Color(.black))
-
-            Text("Member Of Your Group")
-                .font(.caption)
-
-            HStack(spacing: 15){
-
-                ForEach(1...6,id: \.self){i in
-
-                    Button(action: {self.index = i}) {
-
-                        Text("(i)")
-                            .fontWeight(.bold)
-                            .foregroundColor(self.index == i ? .white : .gray)
-                            .padding(.vertical,10)
-                            .padding(.horizontal)
-                            .background(Color(.blue).opacity(self.index == i ? 1 : 0.07))
-                            .cornerRadius(4)
-                    }
-                }
-
-                Spacer(minLength: 0)
-            }
-            .padding(.top)
-
-            Text("Description")
-                .font(.title)
-                .fontWeight(.bold)
-                .foregroundColor(Color(.black))
                 .padding(.top,10)
 
             Text("The Caribbean is a region of the Americas that consists of the Caribbean Sea, its islands and the surrounding coasts")
@@ -682,6 +770,7 @@ struct BottomView : View {
 
 
         }.padding()
+            .padding(.bottom)
     }
 }
 

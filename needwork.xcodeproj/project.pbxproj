@@ -25,6 +25,7 @@
 		3EC0AE5A24DE1F7A00208E83 /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AE5924DE1F7A00208E83 /* Coordinator.swift */; };
 		3EC0AE5E24DE207600208E83 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC0AE5D24DE207600208E83 /* LocationManager.swift */; };
 		3EC73F5324DCBD7500010A0B /* ExpandableCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EC73F5224DCBD7500010A0B /* ExpandableCardView.swift */; };
+		3ED5545F24E073620069CAE6 /* BadgetItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3ED5545E24E073620069CAE6 /* BadgetItem.swift */; };
 		3EDB6AC224CEF880009968A4 /* AuthView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3EDB6AC124CEF880009968A4 /* AuthView.swift */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +70,7 @@
 		3EC0AE5924DE1F7A00208E83 /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		3EC0AE5D24DE207600208E83 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		3EC73F5224DCBD7500010A0B /* ExpandableCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpandableCardView.swift; sourceTree = "<group>"; };
+		3ED5545E24E073620069CAE6 /* BadgetItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgetItem.swift; sourceTree = "<group>"; };
 		3EDB6AC124CEF880009968A4 /* AuthView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -121,6 +123,7 @@
 		3E7E551C24CCA4A5002DEDBC /* needwork */ = {
 			isa = PBXGroup;
 			children = (
+				3ED5545D24E073110069CAE6 /* Badget */,
 				3EC0AE5C24DE206B00208E83 /* Coordinators */,
 				3EC0AE5B24DE206500208E83 /* Managers */,
 				3EC73F5124DCBD5700010A0B /* Card */,
@@ -190,6 +193,14 @@
 				3EC73F5224DCBD7500010A0B /* ExpandableCardView.swift */,
 			);
 			path = Card;
+			sourceTree = "<group>";
+		};
+		3ED5545D24E073110069CAE6 /* Badget */ = {
+			isa = PBXGroup;
+			children = (
+				3ED5545E24E073620069CAE6 /* BadgetItem.swift */,
+			);
+			path = Badget;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -332,6 +343,7 @@
 				3E7E551E24CCA4A5002DEDBC /* AppDelegate.swift in Sources */,
 				3EC73F5324DCBD7500010A0B /* ExpandableCardView.swift in Sources */,
 				3EC0AE5724DE0A7900208E83 /* FavoritesView.swift in Sources */,
+				3ED5545F24E073620069CAE6 /* BadgetItem.swift in Sources */,
 				3E7E552024CCA4A5002DEDBC /* SceneDelegate.swift in Sources */,
 				3EDB6AC224CEF880009968A4 /* AuthView.swift in Sources */,
 				3EC0AE5524DE0A6B00208E83 /* ProfileView.swift in Sources */,

@@ -11,7 +11,7 @@ import BottomBar_SwiftUI
 
 let items: [BottomBarItem] = [
     BottomBarItem(icon: "house.fill", title: "Home", color: .blue),
-    BottomBarItem(icon: "gear", title: "Map", color: .blue),
+    BottomBarItem(icon: "mappin.and.ellipse", title: "Nearby", color: .blue),
     BottomBarItem(icon: "heart", title: "Favorites", color: .blue),
     BottomBarItem(icon: "person.fill", title: "Profile", color: .blue),
 ]
@@ -50,7 +50,7 @@ struct BasicView: View {
             if item.title == "Home"{
                 return AnyView(HomeView())
             }
-            if item.title == "Map"{
+            if item.title == "Nearby"{
                 return AnyView(MapView())
             }
             if item.title == "Favorites"{
