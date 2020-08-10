@@ -54,6 +54,7 @@
 		3E1544F324E18CFE00297CC6 /* MapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsView.swift; sourceTree = "<group>"; };
 		3E1544F824E1DB3E00297CC6 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		3E1544FA24E1DB9400297CC6 /* LandmarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkAnnotation.swift; sourceTree = "<group>"; };
+		3E1544FC24E1EA2800297CC6 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		3E1C3A2024D21D7000C5D60E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3E7E551A24CCA4A5002DEDBC /* needwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = needwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7E551D24CCA4A5002DEDBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -133,6 +134,7 @@
 		3E7E551124CCA4A5002DEDBC = {
 			isa = PBXGroup;
 			children = (
+				3E1544FC24E1EA2800297CC6 /* README.md */,
 				3E7E551C24CCA4A5002DEDBC /* needwork */,
 				3E7E553324CCA4A7002DEDBC /* needworkTests */,
 				3E7E553E24CCA4A7002DEDBC /* needworkUITests */,
