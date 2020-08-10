@@ -2,6 +2,8 @@
 
 ## [![result video](http://img.youtube.com/vi/3a6k4FT5BSg/0.jpg)](http://www.youtube.com/watch?v=3a6k4FT5BSg "See Result Here :-)")
 
+Click on Image for linking directly to the video or copy this link : http://www.youtube.com/watch?v=3a6k4FT5BSg
+
 ## Day 01 - 14
 The development in these 14 days was about getting started and familiar with SwiftUI. I have never used SwiftUI ever before and was just learning by doing. Through my programming language I can tell that I came really quickly into SwiftUI and understood the most things very fast. I was building on top my programming experiences from C#. As a C# enthusiast it felt quite easy to get in SwiftUI. 
 - Request sending and Response retreiving between Client(SwiftUI) and Server(ASP.NET Core) is done.
