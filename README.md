@@ -17,3 +17,31 @@ Getting Started with Swift UI and learning the basics.
  - Figuring out the structure. "What are these Views?"
  - Creting my first Hello World with SwiftUI
 
+### Day 02 - 06
+Started the authentication feature.
+- Added the SwiftUI views for Login and Register pages.
+- Added the HTTP bridge between to Server inside the Client. `HttpAuth` - Class for HTTP transactions, like `/POST` `Login
+- Added Server functionality for authenticate. API Controllers for Login and Registration
+ - Implemented JWT - Bearer authenticationscheme , Token based
+ - JSON models for responses and requests
+
+### Day 07 - 08
+Error handling inside SwiftUI and Code optimazations.
+- Error Views in Login and Register pages
+
+### Day 09 - 11
+Home View implemented.
+ - Styling
+ - Custom styled expandable Cards
+ - Navigation , Custom Tabbar
+
+Map View implemented.
+ - Map integration with MapKit library
+ - Card View for Map Locations on top of the map
+ 
+ Profile & Favorites Views implemented.
+ 
+ ### Day 12 - 14 
+ Code optimazations, Styling. Adding current location features for the map and search for nearby places were integrated.
+  - MKMapView with custom LocationManager and Coordinator were implemented.
+  - Closable Advertisement Banner added on Home View
