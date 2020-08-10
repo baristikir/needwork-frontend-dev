@@ -11,16 +11,24 @@ import MapKit
 
 struct MapView: View {
     
-    private var locationManager = LocationManager()
+    @State private var search: String = ""
+    @ObservedObject var locationManager = LocationManager()
+    
+    @State private var landmarks: [Landmark] = [Landmark]()
     
     var body: some View {
-        ZStack{
-            
+ 
             VStack{
-                MapsView()
-                    .edgesIgnoringSafeArea(.all)
+                
+                ZStack (alignment: .top){
+                    
+                    MapsView(landmarks: landmarks)
+                        .edgesIgnoringSafeArea(.all)
+                    
+                    CategoryView(landmarks: landmarks)
+                
 
-                //SearchView()
+                }
                 
                 VStack{
                     
@@ -35,35 +43,10 @@ struct MapView: View {
                     }
                 }
             }
-        }
+        
         
     }
 }
-
-//---- Start - Google Maps View Integration ----//
-struct MapsView: UIViewRepresentable {
- 
-    
-    func makeUIView(context: UIViewRepresentableContext<MapsView>) -> MKMapView {
-        let mapView = MKMapView()
-        
-        mapView.delegate = context.coordinator
-        //manager.delegate = context.coordinator
-        
-        mapView.showsUserLocation = true
-        
-        return mapView
-    }
-    
-    func makeCoordinator() -> Coordinator{
-        Coordinator(self)
-    }
-    
-    func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<MapsView>) {
-    }
-}
-//---- End - Google Maps View Integration ---- //
-
 
 struct CardView: View {
     var body: some View {
@@ -199,5 +182,117 @@ struct MapView_Previews: PreviewProvider {
 struct HelloView: View {
     var body: some View {
         Text("Hello World")
+    }
+}
+
+struct CategoryView: View {
+    
+     var coworking = "Co-Working"
+     var learning = "Learning"
+     var working = "Working"
+    
+     @State var showCoworking = false
+     @State var showLearning = false
+     @State var showWorking = false
+    
+    @State var search = ""
+    @State var landmarks: [Landmark]
+    
+    private func getNearByLandmarks() {
+        
+        let request = MKLocalSearch.Request()
+        request.naturalLanguageQuery = self.search
+        
+        let search = MKLocalSearch(request: request)
+        search.start { (response, error) in
+            if let response = response {
+                let mapItems = response.mapItems
+                self.landmarks = mapItems.map {
+                    Landmark(placemark: $0.placemark)
+                }
+            }
+        }
+    }
+    
+    func changeSearchText() {
+        if self.showCoworking == true {
+            let searchForCowork = "Coworking"
+            self.search = searchForCowork
+        }
+        if self.showLearning == true {
+            self.search = "Learn Place"
+        }
+        if self.showWorking == true {
+            self.search = "Coworking"
+        }
+    }
+    
+    var body: some View {
+        ScrollView(.horizontal) {
+            HStack(alignment: .top){
+                
+                //Button for finding wokrplaces for coworking
+                Button(action: {
+                    self.showCoworking.toggle()
+                    self.changeSearchText()
+                    self.getNearByLandmarks()
+                    print("show coworking: \(self.showCoworking)")
+                    
+                }){
+                    Text(coworking)
+                        .font(.system(size: 14))
+                        .bold()
+                        .foregroundColor(Color(.white))
+                        .padding(.top)
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.bottom)
+                }
+                .background(Color.black.opacity(0.86))
+                .clipShape(Capsule())
+                .padding(.leading)
+                .padding(.top)
+                
+                //Button for finding wokrplaces for learning
+                Button(action: {
+                    self.showLearning.toggle()
+                    print("show learning: \(self.showLearning)")
+                }){
+                    Text(learning)
+                        .font(.system(size: 14))
+                        .bold()
+                        .foregroundColor(Color(.white))
+                        .padding(.top)
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.bottom)
+                }
+                .background(Color.black.opacity(0.86))
+                .clipShape(Capsule())
+                .padding(.leading, 5)
+                .padding(.top)
+                
+                //Button for finding wokrplaces for working
+                Button(action: {
+                    self.showWorking.toggle()
+                    print("show working: \(self.showWorking)")
+                }){
+                    Text(working)
+                        .font(.system(size: 14))
+                        .bold()
+                        .foregroundColor(Color(.white))
+                        .padding(.top)
+                        .padding(.leading)
+                        .padding(.trailing)
+                        .padding(.bottom)
+                }
+                .background(Color.black.opacity(0.86))
+                .clipShape(Capsule())
+                .padding(.leading,5)
+                .padding(.top)
+                
+            }
+            
+        }
     }
 }

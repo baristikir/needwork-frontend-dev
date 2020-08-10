@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3E152C4824D72ECB001EE3E9 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E152C4724D72ECB001EE3E9 /* ErrorView.swift */; };
+		3E1544F424E18CFE00297CC6 /* MapsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1544F324E18CFE00297CC6 /* MapsView.swift */; };
+		3E1544F924E1DB3E00297CC6 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1544F824E1DB3E00297CC6 /* Landmark.swift */; };
+		3E1544FB24E1DB9400297CC6 /* LandmarkAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1544FA24E1DB9400297CC6 /* LandmarkAnnotation.swift */; };
 		3E1C3A2124D21D7000C5D60E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E1C3A2024D21D7000C5D60E /* HomeView.swift */; };
 		3E7E551E24CCA4A5002DEDBC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E551D24CCA4A5002DEDBC /* AppDelegate.swift */; };
 		3E7E552024CCA4A5002DEDBC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3E7E551F24CCA4A5002DEDBC /* SceneDelegate.swift */; };
@@ -48,6 +51,9 @@
 
 /* Begin PBXFileReference section */
 		3E152C4724D72ECB001EE3E9 /* ErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
+		3E1544F324E18CFE00297CC6 /* MapsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapsView.swift; sourceTree = "<group>"; };
+		3E1544F824E1DB3E00297CC6 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
+		3E1544FA24E1DB9400297CC6 /* LandmarkAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkAnnotation.swift; sourceTree = "<group>"; };
 		3E1C3A2024D21D7000C5D60E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		3E7E551A24CCA4A5002DEDBC /* needwork.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = needwork.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3E7E551D24CCA4A5002DEDBC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +106,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3E1544F024E189D700297CC6 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				3E1544F324E18CFE00297CC6 /* MapsView.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		3E1544F524E18D5900297CC6 /* GetStarted */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = GetStarted;
+			sourceTree = "<group>";
+		};
+		3E1544F724E1DB3300297CC6 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				3E1544F824E1DB3E00297CC6 /* Landmark.swift */,
+				3E1544FA24E1DB9400297CC6 /* LandmarkAnnotation.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		3E7E551124CCA4A5002DEDBC = {
 			isa = PBXGroup;
 			children = (
@@ -123,9 +153,12 @@
 		3E7E551C24CCA4A5002DEDBC /* needwork */ = {
 			isa = PBXGroup;
 			children = (
-				3ED5545D24E073110069CAE6 /* Badget */,
+				3E1544F724E1DB3300297CC6 /* Models */,
+				3E1544F524E18D5900297CC6 /* GetStarted */,
+				3E1544F024E189D700297CC6 /* Map */,
 				3EC0AE5C24DE206B00208E83 /* Coordinators */,
 				3EC0AE5B24DE206500208E83 /* Managers */,
+				3ED5545D24E073110069CAE6 /* Badget */,
 				3EC73F5124DCBD5700010A0B /* Card */,
 				3E7E551D24CCA4A5002DEDBC /* AppDelegate.swift */,
 				3E7E551F24CCA4A5002DEDBC /* SceneDelegate.swift */,
@@ -340,8 +373,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3E1544F424E18CFE00297CC6 /* MapsView.swift in Sources */,
 				3E7E551E24CCA4A5002DEDBC /* AppDelegate.swift in Sources */,
 				3EC73F5324DCBD7500010A0B /* ExpandableCardView.swift in Sources */,
+				3E1544F924E1DB3E00297CC6 /* Landmark.swift in Sources */,
 				3EC0AE5724DE0A7900208E83 /* FavoritesView.swift in Sources */,
 				3ED5545F24E073620069CAE6 /* BadgetItem.swift in Sources */,
 				3E7E552024CCA4A5002DEDBC /* SceneDelegate.swift in Sources */,
@@ -354,6 +389,7 @@
 				3E9F2CC124D8A24300CDB2BB /* AppView.swift in Sources */,
 				3E152C4824D72ECB001EE3E9 /* ErrorView.swift in Sources */,
 				3EC0AE5E24DE207600208E83 /* LocationManager.swift in Sources */,
+				3E1544FB24E1DB9400297CC6 /* LandmarkAnnotation.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
